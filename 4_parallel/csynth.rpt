@@ -1,0 +1,709 @@
+
+
+================================================================
+== Synthesis Summary Report of 'mergesort'
+================================================================
++ General Information: 
+    * Date:           Thu Oct 17 09:07:16 2024
+    * Version:        2024.1 (Build 5069499 on May 21 2024)
+    * Project:        mergesort
+    * Solution:       hls (Vivado IP Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcvu9p-flga2104-2-i
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +--------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+---------+------------+------------+-----+
+    |                Modules               | Issue|      | Latency |  Latency  | Iteration|         |  Trip |          |      |         |            |            |     |
+    |                & Loops               | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count | Pipelined| BRAM |   DSP   |     FF     |     LUT    | URAM|
+    +--------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+---------+------------+------------+-----+
+    |+ mergesort                           |     -|  1.66|        -|          -|         -|        -|      -|        no|     -|  8 (~0%)|  5176 (~0%)|  23015 (1%)|    -|
+    | + mergesort_Pipeline_copy_out        |     -|  4.45|      514|  5.140e+03|         -|      514|      -|        no|     -|        -|    52 (~0%)|   504 (~0%)|    -|
+    |  o copy_out                          |    II|  7.30|      512|  5.120e+03|         3|        2|    256|       yes|     -|        -|           -|           -|    -|
+    | o window                             |     -|  7.30|        -|          -|         -|        -|      -|        no|     -|        -|           -|           -|    -|
+    |  + mergesort_Pipeline_copy_back      |     -|  4.45|      514|  5.140e+03|         -|      514|      -|        no|     -|        -|    52 (~0%)|   504 (~0%)|    -|
+    |   o copy_back                        |    II|  7.30|      512|  5.120e+03|         3|        2|    256|       yes|     -|        -|           -|           -|    -|
+    |  + mergesort_Pipeline_copy_back4     |     -|  4.45|      514|  5.140e+03|         -|      514|      -|        no|     -|        -|    52 (~0%)|   504 (~0%)|    -|
+    |   o copy_back                        |    II|  7.30|      512|  5.120e+03|         3|        2|    256|       yes|     -|        -|           -|           -|    -|
+    |  + mergesort_Pipeline_copy_back8     |     -|  4.45|      514|  5.140e+03|         -|      514|      -|        no|     -|        -|    52 (~0%)|   504 (~0%)|    -|
+    |   o copy_back                        |    II|  7.30|      512|  5.120e+03|         3|        2|    256|       yes|     -|        -|           -|           -|    -|
+    |  + mergesort_Pipeline_copy_back12    |     -|  4.45|      514|  5.140e+03|         -|      514|      -|        no|     -|        -|    52 (~0%)|   504 (~0%)|    -|
+    |   o copy_back                        |    II|  7.30|      512|  5.120e+03|         3|        2|    256|       yes|     -|        -|           -|           -|    -|
+    |  o offset                            |     -|  7.30|        -|          -|         -|        -|      -|        no|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_merge         |     -|  2.46|        -|          -|         -|        -|      -|        no|     -|        -|   285 (~0%)|  1912 (~0%)|    -|
+    |    o merge                           |    II|  7.30|        -|          -|         5|        4|      -|       yes|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_copy_left     |     -|  4.45|    32773|  3.277e+05|         -|    32773|      -|        no|     -|        -|   196 (~0%)|   909 (~0%)|    -|
+    |    o copy_left                       |    II|  7.30|    32770|  3.277e+05|         3|        2|  16384|       yes|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_copy_right    |     -|  4.21|    32772|  3.277e+05|         -|    32772|      -|        no|     -|        -|    98 (~0%)|   858 (~0%)|    -|
+    |    o copy_right                      |    II|  7.30|    32770|  3.277e+05|         3|        2|  16384|       yes|     -|        -|           -|           -|    -|
+    |  o offset                            |     -|  7.30|        -|          -|         -|        -|      -|        no|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_merge1        |     -|  2.46|        -|          -|         -|        -|      -|        no|     -|        -|   292 (~0%)|  1889 (~0%)|    -|
+    |    o merge                           |    II|  7.30|        -|          -|         5|        4|      -|       yes|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_copy_left2    |     -|  4.45|    32773|  3.277e+05|         -|    32773|      -|        no|     -|        -|   196 (~0%)|   909 (~0%)|    -|
+    |    o copy_left                       |    II|  7.30|    32770|  3.277e+05|         3|        2|  16384|       yes|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_copy_right3   |     -|  4.21|    32772|  3.277e+05|         -|    32772|      -|        no|     -|        -|    98 (~0%)|   858 (~0%)|    -|
+    |    o copy_right                      |    II|  7.30|    32770|  3.277e+05|         3|        2|  16384|       yes|     -|        -|           -|           -|    -|
+    |  o offset                            |     -|  7.30|        -|          -|         -|        -|      -|        no|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_merge5        |     -|  2.46|        -|          -|         -|        -|      -|        no|     -|        -|   308 (~0%)|  1843 (~0%)|    -|
+    |    o merge                           |    II|  7.30|        -|          -|         5|        4|      -|       yes|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_copy_left6    |     -|  4.45|    32773|  3.277e+05|         -|    32773|      -|        no|     -|        -|   196 (~0%)|   909 (~0%)|    -|
+    |    o copy_left                       |    II|  7.30|    32770|  3.277e+05|         3|        2|  16384|       yes|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_copy_right7   |     -|  4.21|    32772|  3.277e+05|         -|    32772|      -|        no|     -|        -|    98 (~0%)|   858 (~0%)|    -|
+    |    o copy_right                      |    II|  7.30|    32770|  3.277e+05|         3|        2|  16384|       yes|     -|        -|           -|           -|    -|
+    |  o offset                            |     -|  7.30|        -|          -|         -|        -|      -|        no|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_merge9        |     -|  2.46|        -|          -|         -|        -|      -|        no|     -|        -|   308 (~0%)|  1843 (~0%)|    -|
+    |    o merge                           |    II|  7.30|        -|          -|         5|        4|      -|       yes|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_copy_left10   |     -|  4.45|    32773|  3.277e+05|         -|    32773|      -|        no|     -|        -|   196 (~0%)|   909 (~0%)|    -|
+    |    o copy_left                       |    II|  7.30|    32770|  3.277e+05|         3|        2|  16384|       yes|     -|        -|           -|           -|    -|
+    |   + mergesort_Pipeline_copy_right11  |     -|  4.21|    32772|  3.277e+05|         -|    32772|      -|        no|     -|        -|    98 (~0%)|   858 (~0%)|    -|
+    |    o copy_right                      |    II|  7.30|    32770|  3.277e+05|         3|        2|  16384|       yes|     -|        -|           -|           -|    -|
+    +--------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+------+---------+------------+------------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++----------------+-----------+----------+
+| Port           | Direction | Bitwidth |
++----------------+-----------+----------+
+| in_0_address0  | out       | 8        |
+| in_0_address1  | out       | 8        |
+| in_0_d0        | out       | 32       |
+| in_0_d1        | out       | 32       |
+| in_0_q0        | in        | 32       |
+| in_0_q1        | in        | 32       |
+| in_1_address0  | out       | 8        |
+| in_1_address1  | out       | 8        |
+| in_1_d0        | out       | 32       |
+| in_1_d1        | out       | 32       |
+| in_1_q0        | in        | 32       |
+| in_1_q1        | in        | 32       |
+| in_2_address0  | out       | 8        |
+| in_2_address1  | out       | 8        |
+| in_2_d0        | out       | 32       |
+| in_2_d1        | out       | 32       |
+| in_2_q0        | in        | 32       |
+| in_2_q1        | in        | 32       |
+| in_3_address0  | out       | 8        |
+| in_3_address1  | out       | 8        |
+| in_3_d0        | out       | 32       |
+| in_3_d1        | out       | 32       |
+| in_3_q0        | in        | 32       |
+| in_3_q1        | in        | 32       |
+| out_0_address0 | out       | 8        |
+| out_0_address1 | out       | 8        |
+| out_0_d0       | out       | 32       |
+| out_0_d1       | out       | 32       |
+| out_0_q0       | in        | 32       |
+| out_0_q1       | in        | 32       |
+| out_1_address0 | out       | 8        |
+| out_1_address1 | out       | 8        |
+| out_1_d0       | out       | 32       |
+| out_1_d1       | out       | 32       |
+| out_1_q0       | in        | 32       |
+| out_1_q1       | in        | 32       |
+| out_2_address0 | out       | 8        |
+| out_2_address1 | out       | 8        |
+| out_2_d0       | out       | 32       |
+| out_2_d1       | out       | 32       |
+| out_2_q0       | in        | 32       |
+| out_2_q1       | in        | 32       |
+| out_3_address0 | out       | 8        |
+| out_3_address1 | out       | 8        |
+| out_3_d0       | out       | 32       |
+| out_3_d1       | out       | 32       |
+| out_3_q0       | in        | 32       |
+| out_3_q1       | in        | 32       |
++----------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| in       | inout     | int*     |
+| out      | inout     | int*     |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+----------------+---------+----------+
+| Argument | HW Interface   | HW Type | HW Usage |
++----------+----------------+---------+----------+
+| in       | in_0_address0  | port    | offset   |
+| in       | in_0_ce0       | port    |          |
+| in       | in_0_we0       | port    |          |
+| in       | in_0_d0        | port    |          |
+| in       | in_0_q0        | port    |          |
+| in       | in_0_address1  | port    | offset   |
+| in       | in_0_ce1       | port    |          |
+| in       | in_0_we1       | port    |          |
+| in       | in_0_d1        | port    |          |
+| in       | in_0_q1        | port    |          |
+| in       | in_1_address0  | port    | offset   |
+| in       | in_1_ce0       | port    |          |
+| in       | in_1_we0       | port    |          |
+| in       | in_1_d0        | port    |          |
+| in       | in_1_q0        | port    |          |
+| in       | in_1_address1  | port    | offset   |
+| in       | in_1_ce1       | port    |          |
+| in       | in_1_we1       | port    |          |
+| in       | in_1_d1        | port    |          |
+| in       | in_1_q1        | port    |          |
+| in       | in_2_address0  | port    | offset   |
+| in       | in_2_ce0       | port    |          |
+| in       | in_2_we0       | port    |          |
+| in       | in_2_d0        | port    |          |
+| in       | in_2_q0        | port    |          |
+| in       | in_2_address1  | port    | offset   |
+| in       | in_2_ce1       | port    |          |
+| in       | in_2_we1       | port    |          |
+| in       | in_2_d1        | port    |          |
+| in       | in_2_q1        | port    |          |
+| in       | in_3_address0  | port    | offset   |
+| in       | in_3_ce0       | port    |          |
+| in       | in_3_we0       | port    |          |
+| in       | in_3_d0        | port    |          |
+| in       | in_3_q0        | port    |          |
+| in       | in_3_address1  | port    | offset   |
+| in       | in_3_ce1       | port    |          |
+| in       | in_3_we1       | port    |          |
+| in       | in_3_d1        | port    |          |
+| in       | in_3_q1        | port    |          |
+| out      | out_0_address0 | port    | offset   |
+| out      | out_0_ce0      | port    |          |
+| out      | out_0_we0      | port    |          |
+| out      | out_0_d0       | port    |          |
+| out      | out_0_q0       | port    |          |
+| out      | out_0_address1 | port    | offset   |
+| out      | out_0_ce1      | port    |          |
+| out      | out_0_we1      | port    |          |
+| out      | out_0_d1       | port    |          |
+| out      | out_0_q1       | port    |          |
+| out      | out_1_address0 | port    | offset   |
+| out      | out_1_ce0      | port    |          |
+| out      | out_1_we0      | port    |          |
+| out      | out_1_d0       | port    |          |
+| out      | out_1_q0       | port    |          |
+| out      | out_1_address1 | port    | offset   |
+| out      | out_1_ce1      | port    |          |
+| out      | out_1_we1      | port    |          |
+| out      | out_1_d1       | port    |          |
+| out      | out_1_q1       | port    |          |
+| out      | out_2_address0 | port    | offset   |
+| out      | out_2_ce0      | port    |          |
+| out      | out_2_we0      | port    |          |
+| out      | out_2_d0       | port    |          |
+| out      | out_2_q0       | port    |          |
+| out      | out_2_address1 | port    | offset   |
+| out      | out_2_ce1      | port    |          |
+| out      | out_2_we1      | port    |          |
+| out      | out_2_d1       | port    |          |
+| out      | out_2_q1       | port    |          |
+| out      | out_3_address0 | port    | offset   |
+| out      | out_3_ce0      | port    |          |
+| out      | out_3_we0      | port    |          |
+| out      | out_3_d0       | port    |          |
+| out      | out_3_q0       | port    |          |
+| out      | out_3_address1 | port    | offset   |
+| out      | out_3_ce1      | port    |          |
+| out      | out_3_we1      | port    |          |
+| out      | out_3_d1       | port    |          |
+| out      | out_3_q1       | port    |          |
++----------+----------------+---------+----------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+
+================================================================
+== Bind Op Report
+================================================================
++------------------------------------+-----+--------+-----------------+-----------+----------+---------+
+| Name                               | DSP | Pragma | Variable        | Op        | Impl     | Latency |
++------------------------------------+-----+--------+-----------------+-----------+----------+---------+
+| + mergesort                        | 8   |        |                 |           |          |         |
+|   icmp_ln13_fu_944_p2              |     |        | icmp_ln13       | setlt     | auto     | 0       |
+|   udiv_11s_11ns_11_15_seq_1_U338   |     |        | div_0           | udiv      | auto_seq | 14      |
+|   add_ln19_fu_966_p2               |     |        | add_ln19        | add       | fabric   | 0       |
+|   icmp_ln16_fu_975_p2              |     |        | icmp_ln16       | setlt     | auto     | 0       |
+|   add_ln16_fu_980_p2               |     |        | add_ln16        | add       | fabric   | 0       |
+|   mul_10ns_15ns_16_1_1_U339        | 1   |        | start           | mul       | auto     | 0       |
+|   mul_10ns_15ns_20_1_1_U340        | 1   |        | mul_ln19_1      | mul       | auto     | 0       |
+|   add_ln19_1_fu_1021_p2            |     |        | add_ln19_1      | add       | fabric   | 0       |
+|   sub_ln19_fu_1038_p2              |     |        | sub_ln19        | sub       | fabric   | 0       |
+|   sub_ln19_1_fu_1054_p2            |     |        | sub_ln19_1      | sub       | fabric   | 0       |
+|   mid_fu_1070_p3                   |     |        | mid             | select    | auto_sel | 0       |
+|   add_ln18_fu_1091_p2              |     |        | add_ln18        | add       | fabric   | 0       |
+|   sparsemux_7_2_16_1_1_U342        |     |        | out_count_54    | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U344        |     |        | right_count     | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U343        |     |        | left_count      | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U345        |     |        | out_count_34_ph | sparsemux | auto     | 0       |
+|   udiv_12ns_12ns_11_16_seq_1_U341  |     |        | udiv_ln16       | udiv      | auto_seq | 15      |
+|   add_ln19_2_fu_1280_p2            |     |        | add_ln19_2      | add       | fabric   | 0       |
+|   icmp_ln16_1_fu_1289_p2           |     |        | icmp_ln16_1     | seteq     | auto     | 0       |
+|   add_ln16_1_fu_1294_p2            |     |        | add_ln16_1      | add       | fabric   | 0       |
+|   mul_11ns_10ns_15_1_1_U346        | 1   |        | mul_ln17        | mul       | auto     | 0       |
+|   mul_10ns_15ns_21_1_1_U347        | 1   |        | mul_ln19        | mul       | auto     | 0       |
+|   add_ln19_3_fu_1343_p2            |     |        | add_ln19_3      | add       | fabric   | 0       |
+|   sub_ln19_2_fu_1360_p2            |     |        | sub_ln19_2      | sub       | fabric   | 0       |
+|   sub_ln19_3_fu_1376_p2            |     |        | sub_ln19_3      | sub       | fabric   | 0       |
+|   mid_1_fu_1392_p3                 |     |        | mid_1           | select    | auto_sel | 0       |
+|   add_ln18_2_fu_1413_p2            |     |        | add_ln18_2      | add       | fabric   | 0       |
+|   sparsemux_7_2_16_1_1_U348        |     |        | out_count_56    | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U350        |     |        | right_count_50  | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U349        |     |        | left_count_48   | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U351        |     |        | out_count_43_ph | sparsemux | auto     | 0       |
+|   icmp_ln13_1_fu_1596_p2           |     |        | icmp_ln13_1     | setlt     | auto     | 0       |
+|   udiv_11s_11ns_11_15_seq_1_U352   |     |        | div_2           | udiv      | auto_seq | 14      |
+|   add_ln19_4_fu_1622_p2            |     |        | add_ln19_4      | add       | fabric   | 0       |
+|   icmp_ln16_2_fu_1631_p2           |     |        | icmp_ln16_2     | setlt     | auto     | 0       |
+|   add_ln16_2_fu_1636_p2            |     |        | add_ln16_2      | add       | fabric   | 0       |
+|   mul_11ns_10ns_14_1_1_U353        | 1   |        | mul_ln17_1      | mul       | auto     | 0       |
+|   mul_10ns_15ns_20_1_1_U354        | 1   |        | mul_ln19_2      | mul       | auto     | 0       |
+|   add_ln19_5_fu_1685_p2            |     |        | add_ln19_5      | add       | fabric   | 0       |
+|   sub_ln19_4_fu_1702_p2            |     |        | sub_ln19_4      | sub       | fabric   | 0       |
+|   sub_ln19_5_fu_1718_p2            |     |        | sub_ln19_5      | sub       | fabric   | 0       |
+|   mid_2_fu_1734_p3                 |     |        | mid_2           | select    | auto_sel | 0       |
+|   add_ln18_4_fu_1755_p2            |     |        | add_ln18_4      | add       | fabric   | 0       |
+|   sparsemux_7_2_16_1_1_U356        |     |        | out_count_58    | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U358        |     |        | right_count_51  | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U357        |     |        | left_count_49   | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U359        |     |        | out_count_53_ph | sparsemux | auto     | 0       |
+|   udiv_12ns_14ns_11_16_seq_1_U355  |     |        | udiv_ln16_1     | udiv      | auto_seq | 15      |
+|   add_ln19_6_fu_1952_p2            |     |        | add_ln19_6      | add       | fabric   | 0       |
+|   icmp_ln16_3_fu_1961_p2           |     |        | icmp_ln16_3     | seteq     | auto     | 0       |
+|   add_ln16_3_fu_1966_p2            |     |        | add_ln16_3      | add       | fabric   | 0       |
+|   mul_11ns_10ns_13_1_1_U360        | 1   |        | mul_ln17_2      | mul       | auto     | 0       |
+|   mul_10ns_15ns_23_1_1_U361        | 1   |        | mul_ln19_3      | mul       | auto     | 0       |
+|   add_ln19_7_fu_2015_p2            |     |        | add_ln19_7      | add       | fabric   | 0       |
+|   sub_ln19_6_fu_2032_p2            |     |        | sub_ln19_6      | sub       | fabric   | 0       |
+|   sub_ln19_7_fu_2048_p2            |     |        | sub_ln19_7      | sub       | fabric   | 0       |
+|   mid_3_fu_2064_p3                 |     |        | mid_3           | select    | auto_sel | 0       |
+|   add_ln18_6_fu_2085_p2            |     |        | add_ln18_6      | add       | fabric   | 0       |
+|   sparsemux_7_2_16_1_1_U362        |     |        | out_count_60    | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U364        |     |        | right_count_52  | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U363        |     |        | left_count_50   | sparsemux | auto     | 0       |
+|   sparsemux_7_2_16_1_1_U365        |     |        | out_count_59_ph | sparsemux | auto     | 0       |
+|  + mergesort_Pipeline_merge        | 0   |        |                 |           |          |         |
+|    icmp_ln26_fu_941_p2             |     |        | icmp_ln26       | setlt     | auto     | 0       |
+|    icmp_ln26_1_fu_946_p2           |     |        | icmp_ln26_1     | setlt     | auto     | 0       |
+|    and_ln26_fu_951_p2              |     |        | and_ln26        | and       | auto     | 0       |
+|    add_ln28_fu_961_p2              |     |        | add_ln28        | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U1         |     |        | left_el         | sparsemux | auto     | 0       |
+|    add_ln29_fu_992_p2              |     |        | add_ln29        | add       | fabric   | 0       |
+|    add_ln29_1_fu_997_p2            |     |        | add_ln29_1      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U2         |     |        | right_el        | sparsemux | auto     | 0       |
+|    icmp_ln30_fu_1082_p2            |     |        | icmp_ln30       | setgt     | auto     | 0       |
+|    left_count_26_fu_1114_p2        |     |        | left_count_26   | add       | fabric   | 0       |
+|    right_count_26_fu_1120_p2       |     |        | right_count_26  | add       | fabric   | 0       |
+|    out_count_14_fu_1204_p2         |     |        | out_count_14    | add       | fabric   | 0       |
+|    icmp_ln26_4_fu_1126_p2          |     |        | icmp_ln26_4     | setlt     | auto     | 0       |
+|    icmp_ln26_5_fu_1131_p2          |     |        | icmp_ln26_5     | setlt     | auto     | 0       |
+|    and_ln26_2_fu_1136_p2           |     |        | and_ln26_2      | and       | auto     | 0       |
+|    add_ln28_2_fu_1146_p2           |     |        | add_ln28_2      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U3         |     |        | left_el_2       | sparsemux | auto     | 0       |
+|    add_ln29_4_fu_1177_p2           |     |        | add_ln29_4      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U4         |     |        | right_el_2      | sparsemux | auto     | 0       |
+|    icmp_ln30_2_fu_1263_p2          |     |        | icmp_ln30_2     | setgt     | auto     | 0       |
+|    left_count_27_fu_1295_p2        |     |        | left_count_27   | add       | fabric   | 0       |
+|    right_count_27_fu_1302_p2       |     |        | right_count_27  | add       | fabric   | 0       |
+|    out_count_15_fu_1309_p2         |     |        | out_count_15    | add       | fabric   | 0       |
+|    icmp_ln26_10_fu_1314_p2         |     |        | icmp_ln26_10    | setlt     | auto     | 0       |
+|    icmp_ln26_11_fu_1319_p2         |     |        | icmp_ln26_11    | setlt     | auto     | 0       |
+|    and_ln26_5_fu_1324_p2           |     |        | and_ln26_5      | and       | auto     | 0       |
+|    add_ln28_5_fu_1334_p2           |     |        | add_ln28_5      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U5         |     |        | left_el_5       | sparsemux | auto     | 0       |
+|    add_ln29_8_fu_1365_p2           |     |        | add_ln29_8      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U6         |     |        | right_el_5      | sparsemux | auto     | 0       |
+|    icmp_ln30_5_fu_1446_p2          |     |        | icmp_ln30_5     | setgt     | auto     | 0       |
+|    left_count_28_fu_1476_p2        |     |        | left_count_28   | add       | fabric   | 0       |
+|    right_count_28_fu_1483_p2       |     |        | right_count_28  | add       | fabric   | 0       |
+|    out_count_16_fu_1490_p2         |     |        | out_count_16    | add       | fabric   | 0       |
+|    icmp_ln26_17_fu_1495_p2         |     |        | icmp_ln26_17    | setlt     | auto     | 0       |
+|    icmp_ln26_18_fu_1500_p2         |     |        | icmp_ln26_18    | setlt     | auto     | 0       |
+|    and_ln26_8_fu_1505_p2           |     |        | and_ln26_8      | and       | auto     | 0       |
+|    add_ln28_8_fu_1515_p2           |     |        | add_ln28_8      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U7         |     |        | left_el_8       | sparsemux | auto     | 0       |
+|    add_ln29_10_fu_1546_p2          |     |        | add_ln29_10     | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U8         |     |        | right_el_8      | sparsemux | auto     | 0       |
+|    icmp_ln30_8_fu_1627_p2          |     |        | icmp_ln30_8     | setgt     | auto     | 0       |
+|    left_count_29_fu_1657_p2        |     |        | left_count_29   | add       | fabric   | 0       |
+|    right_count_29_fu_1664_p2       |     |        | right_count_29  | add       | fabric   | 0       |
+|    out_count_17_fu_1671_p2         |     |        | out_count_17    | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_back    | 0   |        |                 |           |          |         |
+|    sparsemux_9_2_32_1_1_U71        |     |        | tmp             | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U72        |     |        | tmp_1           | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U73        |     |        | tmp_2           | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U74        |     |        | tmp_3           | sparsemux | auto     | 0       |
+|    add_ln52_fu_486_p2              |     |        | add_ln52        | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_left    | 0   |        |                 |           |          |         |
+|    icmp_ln39_fu_525_p2             |     |        | icmp_ln39       | setlt     | auto     | 0       |
+|    add_ln41_fu_534_p2              |     |        | add_ln41        | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U35        |     |        | tmp_19          | sparsemux | auto     | 0       |
+|    out_count_50_fu_571_p2          |     |        | out_count_50    | add       | fabric   | 0       |
+|    left_count_44_fu_577_p2         |     |        | left_count_44   | add       | fabric   | 0       |
+|    icmp_ln39_1_fu_583_p2           |     |        | icmp_ln39_1     | setlt     | auto     | 0       |
+|    add_ln41_1_fu_592_p2            |     |        | add_ln41_1      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U36        |     |        | tmp_20          | sparsemux | auto     | 0       |
+|    out_count_51_fu_629_p2          |     |        | out_count_51    | add       | fabric   | 0       |
+|    left_count_45_fu_635_p2         |     |        | left_count_45   | add       | fabric   | 0       |
+|    icmp_ln39_3_fu_641_p2           |     |        | icmp_ln39_3     | setlt     | auto     | 0       |
+|    add_ln41_3_fu_650_p2            |     |        | add_ln41_3      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U37        |     |        | tmp_22          | sparsemux | auto     | 0       |
+|    out_count_52_fu_679_p2          |     |        | out_count_52    | add       | fabric   | 0       |
+|    left_count_46_fu_685_p2         |     |        | left_count_46   | add       | fabric   | 0       |
+|    icmp_ln39_5_fu_691_p2           |     |        | icmp_ln39_5     | setlt     | auto     | 0       |
+|    add_ln41_5_fu_700_p2            |     |        | add_ln41_5      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U38        |     |        | tmp_24          | sparsemux | auto     | 0       |
+|    out_count_53_fu_729_p2          |     |        | out_count_53    | add       | fabric   | 0       |
+|    left_count_47_fu_735_p2         |     |        | left_count_47   | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_right   | 0   |        |                 |           |          |         |
+|    icmp_ln45_fu_465_p2             |     |        | icmp_ln45       | setlt     | auto     | 0       |
+|    add_ln47_fu_475_p2              |     |        | add_ln47        | add       | fabric   | 0       |
+|    add_ln47_1_fu_481_p2            |     |        | add_ln47_1      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U55        |     |        | tmp_s           | sparsemux | auto     | 0       |
+|    out_count_34_fu_688_p2          |     |        | out_count_34    | add       | fabric   | 0       |
+|    right_count_46_fu_509_p2        |     |        | right_count_46  | add       | fabric   | 0       |
+|    icmp_ln45_1_fu_515_p2           |     |        | icmp_ln45_1     | setlt     | auto     | 0       |
+|    add_ln47_2_fu_525_p2            |     |        | add_ln47_2      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U56        |     |        | tmp_21          | sparsemux | auto     | 0       |
+|    out_count_35_fu_743_p2          |     |        | out_count_35    | add       | fabric   | 0       |
+|    right_count_47_fu_553_p2        |     |        | right_count_47  | add       | fabric   | 0       |
+|    icmp_ln45_3_fu_559_p2           |     |        | icmp_ln45_3     | setlt     | auto     | 0       |
+|    add_ln47_5_fu_569_p2            |     |        | add_ln47_5      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U57        |     |        | tmp_22          | sparsemux | auto     | 0       |
+|    out_count_36_fu_770_p2          |     |        | out_count_36    | add       | fabric   | 0       |
+|    right_count_48_fu_589_p2        |     |        | right_count_48  | add       | fabric   | 0       |
+|    icmp_ln45_5_fu_595_p2           |     |        | icmp_ln45_5     | setlt     | auto     | 0       |
+|    add_ln47_7_fu_605_p2            |     |        | add_ln47_7      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U58        |     |        | tmp_23          | sparsemux | auto     | 0       |
+|    out_count_37_fu_797_p2          |     |        | out_count_37    | add       | fabric   | 0       |
+|    right_count_49_fu_625_p2        |     |        | right_count_49  | add       | fabric   | 0       |
+|  + mergesort_Pipeline_merge1       | 0   |        |                 |           |          |         |
+|    icmp_ln26_2_fu_953_p2           |     |        | icmp_ln26_2     | setlt     | auto     | 0       |
+|    icmp_ln26_3_fu_958_p2           |     |        | icmp_ln26_3     | setlt     | auto     | 0       |
+|    and_ln26_1_fu_963_p2            |     |        | and_ln26_1      | and       | auto     | 0       |
+|    add_ln28_1_fu_973_p2            |     |        | add_ln28_1      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U83        |     |        | left_el_1       | sparsemux | auto     | 0       |
+|    add_ln29_2_fu_1004_p2           |     |        | add_ln29_2      | add       | fabric   | 0       |
+|    add_ln29_3_fu_1009_p2           |     |        | add_ln29_3      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U84        |     |        | right_el_1      | sparsemux | auto     | 0       |
+|    icmp_ln30_1_fu_1094_p2          |     |        | icmp_ln30_1     | setgt     | auto     | 0       |
+|    left_count_18_fu_1126_p2        |     |        | left_count_18   | add       | fabric   | 0       |
+|    right_count_18_fu_1132_p2       |     |        | right_count_18  | add       | fabric   | 0       |
+|    icmp_ln26_6_fu_1138_p2          |     |        | icmp_ln26_6     | setlt     | auto     | 0       |
+|    icmp_ln26_7_fu_1143_p2          |     |        | icmp_ln26_7     | setlt     | auto     | 0       |
+|    and_ln26_3_fu_1148_p2           |     |        | and_ln26_3      | and       | auto     | 0       |
+|    add_ln28_3_fu_1158_p2           |     |        | add_ln28_3      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U85        |     |        | left_el_3       | sparsemux | auto     | 0       |
+|    add_ln29_5_fu_1189_p2           |     |        | add_ln29_5      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U86        |     |        | right_el_3      | sparsemux | auto     | 0       |
+|    icmp_ln30_3_fu_1287_p2          |     |        | icmp_ln30_3     | setgt     | auto     | 0       |
+|    left_count_19_fu_1322_p2        |     |        | left_count_19   | add       | fabric   | 0       |
+|    right_count_19_fu_1329_p2       |     |        | right_count_19  | add       | fabric   | 0       |
+|    out_count_11_fu_1336_p2         |     |        | out_count_11    | add       | fabric   | 0       |
+|    icmp_ln26_14_fu_1341_p2         |     |        | icmp_ln26_14    | setlt     | auto     | 0       |
+|    icmp_ln26_fu_1346_p2            |     |        | icmp_ln26       | setlt     | auto     | 0       |
+|    and_ln26_fu_1351_p2             |     |        | and_ln26        | and       | auto     | 0       |
+|    add_ln28_fu_1361_p2             |     |        | add_ln28        | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U87        |     |        | left_el         | sparsemux | auto     | 0       |
+|    add_ln29_fu_1392_p2             |     |        | add_ln29        | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U88        |     |        | right_el        | sparsemux | auto     | 0       |
+|    icmp_ln30_fu_1473_p2            |     |        | icmp_ln30       | setgt     | auto     | 0       |
+|    left_count_20_fu_1503_p2        |     |        | left_count_20   | add       | fabric   | 0       |
+|    right_count_20_fu_1510_p2       |     |        | right_count_20  | add       | fabric   | 0       |
+|    out_count_12_fu_1517_p2         |     |        | out_count_12    | add       | fabric   | 0       |
+|    icmp_ln26_15_fu_1522_p2         |     |        | icmp_ln26_15    | setlt     | auto     | 0       |
+|    icmp_ln26_16_fu_1527_p2         |     |        | icmp_ln26_16    | setlt     | auto     | 0       |
+|    and_ln26_7_fu_1532_p2           |     |        | and_ln26_7      | and       | auto     | 0       |
+|    add_ln28_7_fu_1542_p2           |     |        | add_ln28_7      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U89        |     |        | left_el_7       | sparsemux | auto     | 0       |
+|    add_ln29_9_fu_1573_p2           |     |        | add_ln29_9      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U90        |     |        | right_el_7      | sparsemux | auto     | 0       |
+|    icmp_ln30_7_fu_1654_p2          |     |        | icmp_ln30_7     | setgt     | auto     | 0       |
+|    left_count_22_fu_1684_p2        |     |        | left_count_22   | add       | fabric   | 0       |
+|    right_count_22_fu_1691_p2       |     |        | right_count_22  | add       | fabric   | 0       |
+|    out_count_13_fu_1698_p2         |     |        | out_count_13    | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_back4   | 0   |        |                 |           |          |         |
+|    sparsemux_9_2_32_1_1_U152       |     |        | tmp_6           | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U153       |     |        | tmp_7           | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U154       |     |        | tmp_8           | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U155       |     |        | tmp_9           | sparsemux | auto     | 0       |
+|    add_ln52_fu_486_p2              |     |        | add_ln52        | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_left2   | 0   |        |                 |           |          |         |
+|    icmp_ln39_2_fu_525_p2           |     |        | icmp_ln39_2     | setlt     | auto     | 0       |
+|    add_ln41_2_fu_534_p2            |     |        | add_ln41_2      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U116       |     |        | tmp_21          | sparsemux | auto     | 0       |
+|    out_count_42_fu_571_p2          |     |        | out_count_42    | add       | fabric   | 0       |
+|    left_count_35_fu_577_p2         |     |        | left_count_35   | add       | fabric   | 0       |
+|    icmp_ln39_fu_583_p2             |     |        | icmp_ln39       | setlt     | auto     | 0       |
+|    add_ln41_fu_592_p2              |     |        | add_ln41        | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U117       |     |        | tmp_23          | sparsemux | auto     | 0       |
+|    out_count_43_fu_629_p2          |     |        | out_count_43    | add       | fabric   | 0       |
+|    left_count_36_fu_635_p2         |     |        | left_count_36   | add       | fabric   | 0       |
+|    icmp_ln39_4_fu_641_p2           |     |        | icmp_ln39_4     | setlt     | auto     | 0       |
+|    add_ln41_4_fu_650_p2            |     |        | add_ln41_4      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U118       |     |        | tmp_26          | sparsemux | auto     | 0       |
+|    out_count_44_fu_679_p2          |     |        | out_count_44    | add       | fabric   | 0       |
+|    left_count_37_fu_685_p2         |     |        | left_count_37   | add       | fabric   | 0       |
+|    icmp_ln39_5_fu_691_p2           |     |        | icmp_ln39_5     | setlt     | auto     | 0       |
+|    add_ln41_5_fu_700_p2            |     |        | add_ln41_5      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U119       |     |        | tmp_s           | sparsemux | auto     | 0       |
+|    out_count_45_fu_729_p2          |     |        | out_count_45    | add       | fabric   | 0       |
+|    left_count_38_fu_735_p2         |     |        | left_count_38   | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_right3  | 0   |        |                 |           |          |         |
+|    icmp_ln45_2_fu_465_p2           |     |        | icmp_ln45_2     | setlt     | auto     | 0       |
+|    add_ln47_3_fu_475_p2            |     |        | add_ln47_3      | add       | fabric   | 0       |
+|    add_ln47_4_fu_481_p2            |     |        | add_ln47_4      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U136       |     |        | tmp_s           | sparsemux | auto     | 0       |
+|    out_count_24_fu_688_p2          |     |        | out_count_24    | add       | fabric   | 0       |
+|    right_count_37_fu_509_p2        |     |        | right_count_37  | add       | fabric   | 0       |
+|    icmp_ln45_fu_515_p2             |     |        | icmp_ln45       | setlt     | auto     | 0       |
+|    add_ln47_fu_525_p2              |     |        | add_ln47        | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U137       |     |        | tmp_15          | sparsemux | auto     | 0       |
+|    out_count_25_fu_743_p2          |     |        | out_count_25    | add       | fabric   | 0       |
+|    right_count_38_fu_553_p2        |     |        | right_count_38  | add       | fabric   | 0       |
+|    icmp_ln45_4_fu_559_p2           |     |        | icmp_ln45_4     | setlt     | auto     | 0       |
+|    add_ln47_5_fu_569_p2            |     |        | add_ln47_5      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U138       |     |        | tmp_16          | sparsemux | auto     | 0       |
+|    out_count_26_fu_770_p2          |     |        | out_count_26    | add       | fabric   | 0       |
+|    right_count_39_fu_589_p2        |     |        | right_count_39  | add       | fabric   | 0       |
+|    icmp_ln45_5_fu_595_p2           |     |        | icmp_ln45_5     | setlt     | auto     | 0       |
+|    add_ln47_6_fu_605_p2            |     |        | add_ln47_6      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U139       |     |        | tmp_17          | sparsemux | auto     | 0       |
+|    out_count_27_fu_797_p2          |     |        | out_count_27    | add       | fabric   | 0       |
+|    right_count_40_fu_625_p2        |     |        | right_count_40  | add       | fabric   | 0       |
+|  + mergesort_Pipeline_merge5       | 0   |        |                 |           |          |         |
+|    icmp_ln26_fu_959_p2             |     |        | icmp_ln26       | setlt     | auto     | 0       |
+|    icmp_ln26_8_fu_964_p2           |     |        | icmp_ln26_8     | setlt     | auto     | 0       |
+|    and_ln26_fu_969_p2              |     |        | and_ln26        | and       | auto     | 0       |
+|    add_ln28_fu_979_p2              |     |        | add_ln28        | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U164       |     |        | left_el         | sparsemux | auto     | 0       |
+|    add_ln29_fu_1010_p2             |     |        | add_ln29        | add       | fabric   | 0       |
+|    add_ln29_5_fu_1015_p2           |     |        | add_ln29_5      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U165       |     |        | right_el        | sparsemux | auto     | 0       |
+|    icmp_ln30_fu_1100_p2            |     |        | icmp_ln30       | setgt     | auto     | 0       |
+|    left_count_10_fu_1132_p2        |     |        | left_count_10   | add       | fabric   | 0       |
+|    right_count_10_fu_1138_p2       |     |        | right_count_10  | add       | fabric   | 0       |
+|    icmp_ln26_9_fu_1144_p2          |     |        | icmp_ln26_9     | setlt     | auto     | 0       |
+|    icmp_ln26_10_fu_1149_p2         |     |        | icmp_ln26_10    | setlt     | auto     | 0       |
+|    and_ln26_4_fu_1154_p2           |     |        | and_ln26_4      | and       | auto     | 0       |
+|    add_ln28_4_fu_1164_p2           |     |        | add_ln28_4      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U166       |     |        | left_el_4       | sparsemux | auto     | 0       |
+|    add_ln29_6_fu_1195_p2           |     |        | add_ln29_6      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U167       |     |        | right_el_4      | sparsemux | auto     | 0       |
+|    icmp_ln30_4_fu_1293_p2          |     |        | icmp_ln30_4     | setgt     | auto     | 0       |
+|    left_count_12_fu_1328_p2        |     |        | left_count_12   | add       | fabric   | 0       |
+|    right_count_12_fu_1335_p2       |     |        | right_count_12  | add       | fabric   | 0       |
+|    icmp_ln26_11_fu_1359_p2         |     |        | icmp_ln26_11    | setlt     | auto     | 0       |
+|    icmp_ln26_12_fu_1364_p2         |     |        | icmp_ln26_12    | setlt     | auto     | 0       |
+|    and_ln26_5_fu_1369_p2           |     |        | and_ln26_5      | and       | auto     | 0       |
+|    add_ln28_5_fu_1379_p2           |     |        | add_ln28_5      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U168       |     |        | left_el_5       | sparsemux | auto     | 0       |
+|    add_ln29_7_fu_1410_p2           |     |        | add_ln29_7      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U169       |     |        | right_el_5      | sparsemux | auto     | 0       |
+|    icmp_ln30_5_fu_1491_p2          |     |        | icmp_ln30_5     | setgt     | auto     | 0       |
+|    left_count_14_fu_1526_p2        |     |        | left_count_14   | add       | fabric   | 0       |
+|    right_count_14_fu_1533_p2       |     |        | right_count_14  | add       | fabric   | 0       |
+|    icmp_ln26_13_fu_1547_p2         |     |        | icmp_ln26_13    | setlt     | auto     | 0       |
+|    icmp_ln26_14_fu_1552_p2         |     |        | icmp_ln26_14    | setlt     | auto     | 0       |
+|    and_ln26_6_fu_1557_p2           |     |        | and_ln26_6      | and       | auto     | 0       |
+|    add_ln28_6_fu_1567_p2           |     |        | add_ln28_6      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U170       |     |        | left_el_6       | sparsemux | auto     | 0       |
+|    add_ln29_8_fu_1598_p2           |     |        | add_ln29_8      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U171       |     |        | right_el_6      | sparsemux | auto     | 0       |
+|    icmp_ln30_6_fu_1679_p2          |     |        | icmp_ln30_6     | setgt     | auto     | 0       |
+|    left_count_16_fu_1704_p2        |     |        | left_count_16   | add       | fabric   | 0       |
+|    right_count_16_fu_1711_p2       |     |        | right_count_16  | add       | fabric   | 0       |
+|    out_count_10_fu_1718_p2         |     |        | out_count_10    | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_back8   | 0   |        |                 |           |          |         |
+|    sparsemux_9_2_32_1_1_U233       |     |        | tmp_11          | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U234       |     |        | tmp_12          | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U235       |     |        | tmp_13          | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U236       |     |        | tmp_14          | sparsemux | auto     | 0       |
+|    add_ln52_fu_486_p2              |     |        | add_ln52        | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_left6   | 0   |        |                 |           |          |         |
+|    icmp_ln39_fu_525_p2             |     |        | icmp_ln39       | setlt     | auto     | 0       |
+|    add_ln41_fu_534_p2              |     |        | add_ln41        | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U197       |     |        | tmp_25          | sparsemux | auto     | 0       |
+|    out_count_38_fu_571_p2          |     |        | out_count_38    | add       | fabric   | 0       |
+|    left_count_31_fu_577_p2         |     |        | left_count_31   | add       | fabric   | 0       |
+|    icmp_ln39_1_fu_583_p2           |     |        | icmp_ln39_1     | setlt     | auto     | 0       |
+|    add_ln41_1_fu_592_p2            |     |        | add_ln41_1      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U198       |     |        | tmp_s           | sparsemux | auto     | 0       |
+|    out_count_39_fu_629_p2          |     |        | out_count_39    | add       | fabric   | 0       |
+|    left_count_32_fu_635_p2         |     |        | left_count_32   | add       | fabric   | 0       |
+|    icmp_ln39_2_fu_641_p2           |     |        | icmp_ln39_2     | setlt     | auto     | 0       |
+|    add_ln41_2_fu_650_p2            |     |        | add_ln41_2      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U199       |     |        | tmp_26          | sparsemux | auto     | 0       |
+|    out_count_40_fu_679_p2          |     |        | out_count_40    | add       | fabric   | 0       |
+|    left_count_33_fu_685_p2         |     |        | left_count_33   | add       | fabric   | 0       |
+|    icmp_ln39_3_fu_691_p2           |     |        | icmp_ln39_3     | setlt     | auto     | 0       |
+|    add_ln41_3_fu_700_p2            |     |        | add_ln41_3      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U200       |     |        | tmp_27          | sparsemux | auto     | 0       |
+|    out_count_41_fu_729_p2          |     |        | out_count_41    | add       | fabric   | 0       |
+|    left_count_34_fu_735_p2         |     |        | left_count_34   | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_right7  | 0   |        |                 |           |          |         |
+|    icmp_ln45_fu_465_p2             |     |        | icmp_ln45       | setlt     | auto     | 0       |
+|    add_ln47_fu_475_p2              |     |        | add_ln47        | add       | fabric   | 0       |
+|    add_ln47_1_fu_481_p2            |     |        | add_ln47_1      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U217       |     |        | tmp_s           | sparsemux | auto     | 0       |
+|    out_count_19_fu_688_p2          |     |        | out_count_19    | add       | fabric   | 0       |
+|    right_count_31_fu_509_p2        |     |        | right_count_31  | add       | fabric   | 0       |
+|    icmp_ln45_1_fu_515_p2           |     |        | icmp_ln45_1     | setlt     | auto     | 0       |
+|    add_ln47_2_fu_525_p2            |     |        | add_ln47_2      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U218       |     |        | tmp_12          | sparsemux | auto     | 0       |
+|    out_count_20_fu_743_p2          |     |        | out_count_20    | add       | fabric   | 0       |
+|    right_count_33_fu_553_p2        |     |        | right_count_33  | add       | fabric   | 0       |
+|    icmp_ln45_2_fu_559_p2           |     |        | icmp_ln45_2     | setlt     | auto     | 0       |
+|    add_ln47_3_fu_569_p2            |     |        | add_ln47_3      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U219       |     |        | tmp_13          | sparsemux | auto     | 0       |
+|    out_count_21_fu_770_p2          |     |        | out_count_21    | add       | fabric   | 0       |
+|    right_count_34_fu_589_p2        |     |        | right_count_34  | add       | fabric   | 0       |
+|    icmp_ln45_3_fu_595_p2           |     |        | icmp_ln45_3     | setlt     | auto     | 0       |
+|    add_ln47_4_fu_605_p2            |     |        | add_ln47_4      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U220       |     |        | tmp_14          | sparsemux | auto     | 0       |
+|    out_count_22_fu_797_p2          |     |        | out_count_22    | add       | fabric   | 0       |
+|    right_count_35_fu_625_p2        |     |        | right_count_35  | add       | fabric   | 0       |
+|  + mergesort_Pipeline_merge9       | 0   |        |                 |           |          |         |
+|    icmp_ln26_fu_959_p2             |     |        | icmp_ln26       | setlt     | auto     | 0       |
+|    icmp_ln26_1_fu_964_p2           |     |        | icmp_ln26_1     | setlt     | auto     | 0       |
+|    and_ln26_fu_969_p2              |     |        | and_ln26        | and       | auto     | 0       |
+|    add_ln28_fu_979_p2              |     |        | add_ln28        | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U245       |     |        | left_el         | sparsemux | auto     | 0       |
+|    add_ln29_fu_1010_p2             |     |        | add_ln29        | add       | fabric   | 0       |
+|    add_ln29_1_fu_1015_p2           |     |        | add_ln29_1      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U246       |     |        | right_el        | sparsemux | auto     | 0       |
+|    icmp_ln30_fu_1100_p2            |     |        | icmp_ln30       | setgt     | auto     | 0       |
+|    left_count_2_fu_1132_p2         |     |        | left_count_2    | add       | fabric   | 0       |
+|    right_count_2_fu_1138_p2        |     |        | right_count_2   | add       | fabric   | 0       |
+|    icmp_ln26_2_fu_1144_p2          |     |        | icmp_ln26_2     | setlt     | auto     | 0       |
+|    icmp_ln26_3_fu_1149_p2          |     |        | icmp_ln26_3     | setlt     | auto     | 0       |
+|    and_ln26_1_fu_1154_p2           |     |        | and_ln26_1      | and       | auto     | 0       |
+|    add_ln28_1_fu_1164_p2           |     |        | add_ln28_1      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U247       |     |        | left_el_1       | sparsemux | auto     | 0       |
+|    add_ln29_2_fu_1195_p2           |     |        | add_ln29_2      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U248       |     |        | right_el_1      | sparsemux | auto     | 0       |
+|    icmp_ln30_1_fu_1293_p2          |     |        | icmp_ln30_1     | setgt     | auto     | 0       |
+|    left_count_4_fu_1328_p2         |     |        | left_count_4    | add       | fabric   | 0       |
+|    right_count_4_fu_1335_p2        |     |        | right_count_4   | add       | fabric   | 0       |
+|    icmp_ln26_4_fu_1359_p2          |     |        | icmp_ln26_4     | setlt     | auto     | 0       |
+|    icmp_ln26_5_fu_1364_p2          |     |        | icmp_ln26_5     | setlt     | auto     | 0       |
+|    and_ln26_2_fu_1369_p2           |     |        | and_ln26_2      | and       | auto     | 0       |
+|    add_ln28_2_fu_1379_p2           |     |        | add_ln28_2      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U249       |     |        | left_el_2       | sparsemux | auto     | 0       |
+|    add_ln29_3_fu_1410_p2           |     |        | add_ln29_3      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U250       |     |        | right_el_2      | sparsemux | auto     | 0       |
+|    icmp_ln30_2_fu_1491_p2          |     |        | icmp_ln30_2     | setgt     | auto     | 0       |
+|    left_count_6_fu_1526_p2         |     |        | left_count_6    | add       | fabric   | 0       |
+|    right_count_6_fu_1533_p2        |     |        | right_count_6   | add       | fabric   | 0       |
+|    icmp_ln26_6_fu_1547_p2          |     |        | icmp_ln26_6     | setlt     | auto     | 0       |
+|    icmp_ln26_7_fu_1552_p2          |     |        | icmp_ln26_7     | setlt     | auto     | 0       |
+|    and_ln26_3_fu_1557_p2           |     |        | and_ln26_3      | and       | auto     | 0       |
+|    add_ln28_3_fu_1567_p2           |     |        | add_ln28_3      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U251       |     |        | left_el_3       | sparsemux | auto     | 0       |
+|    add_ln29_4_fu_1598_p2           |     |        | add_ln29_4      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U252       |     |        | right_el_3      | sparsemux | auto     | 0       |
+|    icmp_ln30_3_fu_1679_p2          |     |        | icmp_ln30_3     | setgt     | auto     | 0       |
+|    left_count_8_fu_1704_p2         |     |        | left_count_8    | add       | fabric   | 0       |
+|    right_count_8_fu_1711_p2        |     |        | right_count_8   | add       | fabric   | 0       |
+|    out_count_5_fu_1718_p2          |     |        | out_count_5     | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_back12  | 0   |        |                 |           |          |         |
+|    sparsemux_9_2_32_1_1_U314       |     |        | tmp_15          | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U315       |     |        | tmp_16          | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U316       |     |        | tmp_17          | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U317       |     |        | tmp_18          | sparsemux | auto     | 0       |
+|    add_ln52_fu_486_p2              |     |        | add_ln52        | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_left10  | 0   |        |                 |           |          |         |
+|    icmp_ln39_fu_525_p2             |     |        | icmp_ln39       | setlt     | auto     | 0       |
+|    add_ln41_fu_534_p2              |     |        | add_ln41        | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U278       |     |        | tmp_s           | sparsemux | auto     | 0       |
+|    out_count_46_fu_571_p2          |     |        | out_count_46    | add       | fabric   | 0       |
+|    left_count_40_fu_577_p2         |     |        | left_count_40   | add       | fabric   | 0       |
+|    icmp_ln39_6_fu_583_p2           |     |        | icmp_ln39_6     | setlt     | auto     | 0       |
+|    add_ln41_6_fu_592_p2            |     |        | add_ln41_6      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U279       |     |        | tmp_28          | sparsemux | auto     | 0       |
+|    out_count_47_fu_629_p2          |     |        | out_count_47    | add       | fabric   | 0       |
+|    left_count_41_fu_635_p2         |     |        | left_count_41   | add       | fabric   | 0       |
+|    icmp_ln39_7_fu_641_p2           |     |        | icmp_ln39_7     | setlt     | auto     | 0       |
+|    add_ln41_7_fu_650_p2            |     |        | add_ln41_7      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U280       |     |        | tmp_29          | sparsemux | auto     | 0       |
+|    out_count_48_fu_679_p2          |     |        | out_count_48    | add       | fabric   | 0       |
+|    left_count_42_fu_685_p2         |     |        | left_count_42   | add       | fabric   | 0       |
+|    icmp_ln39_8_fu_691_p2           |     |        | icmp_ln39_8     | setlt     | auto     | 0       |
+|    add_ln41_8_fu_700_p2            |     |        | add_ln41_8      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U281       |     |        | tmp_30          | sparsemux | auto     | 0       |
+|    out_count_49_fu_729_p2          |     |        | out_count_49    | add       | fabric   | 0       |
+|    left_count_43_fu_735_p2         |     |        | left_count_43   | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_right11 | 0   |        |                 |           |          |         |
+|    icmp_ln45_fu_465_p2             |     |        | icmp_ln45       | setlt     | auto     | 0       |
+|    add_ln47_fu_475_p2              |     |        | add_ln47        | add       | fabric   | 0       |
+|    add_ln47_7_fu_481_p2            |     |        | add_ln47_7      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U298       |     |        | tmp_s           | sparsemux | auto     | 0       |
+|    out_count_29_fu_688_p2          |     |        | out_count_29    | add       | fabric   | 0       |
+|    right_count_42_fu_509_p2        |     |        | right_count_42  | add       | fabric   | 0       |
+|    icmp_ln45_6_fu_515_p2           |     |        | icmp_ln45_6     | setlt     | auto     | 0       |
+|    add_ln47_8_fu_525_p2            |     |        | add_ln47_8      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U299       |     |        | tmp_18          | sparsemux | auto     | 0       |
+|    out_count_30_fu_743_p2          |     |        | out_count_30    | add       | fabric   | 0       |
+|    right_count_43_fu_553_p2        |     |        | right_count_43  | add       | fabric   | 0       |
+|    icmp_ln45_7_fu_559_p2           |     |        | icmp_ln45_7     | setlt     | auto     | 0       |
+|    add_ln47_9_fu_569_p2            |     |        | add_ln47_9      | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U300       |     |        | tmp_19          | sparsemux | auto     | 0       |
+|    out_count_31_fu_770_p2          |     |        | out_count_31    | add       | fabric   | 0       |
+|    right_count_44_fu_589_p2        |     |        | right_count_44  | add       | fabric   | 0       |
+|    icmp_ln45_8_fu_595_p2           |     |        | icmp_ln45_8     | setlt     | auto     | 0       |
+|    add_ln47_10_fu_605_p2           |     |        | add_ln47_10     | add       | fabric   | 0       |
+|    sparsemux_9_2_32_1_1_U301       |     |        | tmp_20          | sparsemux | auto     | 0       |
+|    out_count_32_fu_797_p2          |     |        | out_count_32    | add       | fabric   | 0       |
+|    right_count_45_fu_625_p2        |     |        | right_count_45  | add       | fabric   | 0       |
+|  + mergesort_Pipeline_copy_out     | 0   |        |                 |           |          |         |
+|    sparsemux_9_2_32_1_1_U326       |     |        | tmp_s           | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U327       |     |        | tmp_4           | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U328       |     |        | tmp_5           | sparsemux | auto     | 0       |
+|    sparsemux_9_2_32_1_1_U329       |     |        | tmp_10          | sparsemux | auto     | 0       |
+|    add_ln58_fu_486_p2              |     |        | add_ln58        | add       | fabric   | 0       |
++------------------------------------+-----+--------+-----------------+-----------+----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
+  No bind storage info in design
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++-----------------+----------------------------------+-----------------------------------------------+
+| Type            | Options                          | Location                                      |
++-----------------+----------------------------------+-----------------------------------------------+
+| array_partition | variable=in type=block factor=4  | mergesort_4_parallel.cpp:10 in mergesort, in  |
+| array_partition | variable=out type=block factor=4 | mergesort_4_parallel.cpp:11 in mergesort, out |
+| unroll          | factor=4                         | mergesort_4_parallel.cpp:14 in mergesort      |
+| unroll          | factor=4                         | mergesort_4_parallel.cpp:27 in mergesort      |
+| unroll          | factor=4                         | mergesort_4_parallel.cpp:40 in mergesort      |
+| unroll          | factor=4                         | mergesort_4_parallel.cpp:46 in mergesort      |
+| unroll          | factor=4                         | mergesort_4_parallel.cpp:53 in mergesort      |
+| unroll          | factor=4                         | mergesort_4_parallel.cpp:59 in mergesort      |
++-----------------+----------------------------------+-----------------------------------------------+
+
+

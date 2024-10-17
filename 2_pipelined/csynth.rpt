@@ -1,0 +1,157 @@
+
+
+================================================================
+== Synthesis Summary Report of 'mergesort'
+================================================================
++ General Information: 
+    * Date:           Wed Oct 16 19:38:52 2024
+    * Version:        2024.1 (Build 5069499 on May 21 2024)
+    * Project:        mergesort
+    * Solution:       hls (Vivado IP Flow Target)
+    * Product family: virtexuplus
+    * Target device:  xcvu9p-flga2104-2-i
+    
+
++ Performance & Resource Estimates: 
+    
+    PS: '+' for module; 'o' for loop; '*' for dataflow
+    +----------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+---------+----+-----------+-----------+-----+
+    |                 Modules                | Issue|      | Latency |  Latency  | Iteration|         |  Trip |          |         |    |           |           |     |
+    |                 & Loops                | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count | Pipelined|  BRAM   | DSP|     FF    |    LUT    | URAM|
+    +----------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+---------+----+-----------+-----------+-----+
+    |+ mergesort                             |     -|  3.90|        -|          -|         -|        -|      -|        no|  2 (~0%)|   -|  277 (~0%)|  758 (~0%)|    -|
+    | + mergesort_Pipeline_1                 |     -|  4.98|     1026|  1.026e+04|         -|     1026|      -|        no|        -|   -|   13 (~0%)|   64 (~0%)|    -|
+    |  o Loop 1                              |     -|  7.30|     1024|  1.024e+04|         1|        1|   1024|       yes|        -|   -|          -|          -|    -|
+    | + mergesort_Pipeline_copy_out          |     -|  4.90|     1026|  1.026e+04|         -|     1026|      -|        no|        -|   -|   25 (~0%)|   75 (~0%)|    -|
+    |  o copy_out                            |     -|  7.30|     1024|  1.024e+04|         2|        1|   1024|       yes|        -|   -|          -|          -|    -|
+    | o window_growth                        |     -|  7.30|        -|          -|         -|        -|      -|        no|        -|   -|          -|          -|    -|
+    |  + mergesort_Pipeline_copy             |     -|  4.90|     1026|  1.026e+04|         -|     1026|      -|        no|        -|   -|   25 (~0%)|   75 (~0%)|    -|
+    |   o copy                               |     -|  7.30|     1024|  1.024e+04|         2|        1|   1024|       yes|        -|   -|          -|          -|    -|
+    |  o merge_subarrays                     |     -|  7.30|        -|          -|     65539|        -|      -|        no|        -|   -|          -|          -|    -|
+    |   + mergesort_Pipeline_VITIS_LOOP_7_1  |     -|  3.90|    65537|  6.554e+05|         -|    65537|      -|        no|        -|   -|  115 (~0%)|  278 (~0%)|    -|
+    |    o VITIS_LOOP_7_1                    |     -|  7.30|    65535|  6.554e+05|         2|        1|  65535|       yes|        -|   -|          -|          -|    -|
+    +----------------------------------------+------+------+---------+-----------+----------+---------+-------+----------+---------+----+-----------+-----------+-----+
+
+
+================================================================
+== HW Interfaces
+================================================================
+* AP_MEMORY
++-------------------+-----------+----------+
+| Port              | Direction | Bitwidth |
++-------------------+-----------+----------+
+| input_r_address0  | out       | 10       |
+| input_r_address1  | out       | 10       |
+| input_r_d0        | out       | 32       |
+| input_r_q0        | in        | 32       |
+| input_r_q1        | in        | 32       |
+| output_r_address0 | out       | 10       |
+| output_r_d0       | out       | 32       |
++-------------------+-----------+----------+
+
+* TOP LEVEL CONTROL
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
+
+
+================================================================
+== SW I/O Information
+================================================================
+* Top Function Arguments
++----------+-----------+----------+
+| Argument | Direction | Datatype |
++----------+-----------+----------+
+| input    | inout     | int*     |
+| output   | out       | int*     |
++----------+-----------+----------+
+
+* SW-to-HW Mapping
++----------+-------------------+---------+----------+
+| Argument | HW Interface      | HW Type | HW Usage |
++----------+-------------------+---------+----------+
+| input    | input_r_address0  | port    | offset   |
+| input    | input_r_ce0       | port    |          |
+| input    | input_r_we0       | port    |          |
+| input    | input_r_d0        | port    |          |
+| input    | input_r_q0        | port    |          |
+| input    | input_r_address1  | port    | offset   |
+| input    | input_r_ce1       | port    |          |
+| input    | input_r_q1        | port    |          |
+| output   | output_r_address0 | port    | offset   |
+| output   | output_r_ce0      | port    |          |
+| output   | output_r_we0      | port    |          |
+| output   | output_r_d0       | port    |          |
++----------+-------------------+---------+----------+
+
+
+================================================================
+== M_AXI Burst Information
+================================================================
+ Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
+
+
+================================================================
+== Bind Op Report
+================================================================
++--------------------------------------+-----+--------+-------------+--------+----------+---------+
+| Name                                 | DSP | Pragma | Variable    | Op     | Impl     | Latency |
++--------------------------------------+-----+--------+-------------+--------+----------+---------+
+| + mergesort                          | 0   |        |             |        |          |         |
+|   icmp_ln27_fu_150_p2                |     |        | icmp_ln27   | seteq  | auto     | 0       |
+|   add_ln28_fu_165_p2                 |     |        | add_ln28    | add    | fabric   | 0       |
+|   m_fu_178_p3                        |     |        | m           | select | auto_sel | 0       |
+|   s_fu_187_p2                        |     |        | s           | add    | fabric   | 0       |
+|   icmp_ln29_fu_202_p2                |     |        | icmp_ln29   | seteq  | auto     | 0       |
+|   e_fu_208_p3                        |     |        | e           | select | auto_sel | 0       |
+|  + mergesort_Pipeline_1              | 0   |        |             |        |          |         |
+|    exitcond64_fu_50_p2               |     |        | exitcond64  | seteq  | auto     | 0       |
+|    empty_12_fu_56_p2                 |     |        | empty_12    | add    | fabric   | 0       |
+|  + mergesort_Pipeline_copy_out       | 0   |        |             |        |          |         |
+|    icmp_ln38_fu_73_p2                |     |        | icmp_ln38   | seteq  | auto     | 0       |
+|    add_ln38_fu_79_p2                 |     |        | add_ln38    | add    | fabric   | 0       |
+|  + mergesort_Pipeline_VITIS_LOOP_7_1 | 0   |        |             |        |          |         |
+|    icmp_ln7_fu_186_p2                |     |        | icmp_ln7    | setlt  | auto     | 0       |
+|    icmp_ln11_fu_201_p2               |     |        | icmp_ln11   | seteq  | auto     | 0       |
+|    icmp_ln11_1_fu_206_p2             |     |        | icmp_ln11_1 | setlt  | auto     | 0       |
+|    icmp_ln11_2_fu_227_p2             |     |        | icmp_ln11_2 | setlt  | auto     | 0       |
+|    xor_ln11_fu_233_p2                |     |        | xor_ln11    | xor    | auto     | 0       |
+|    and_ln11_fu_239_p2                |     |        | and_ln11    | and    | auto     | 0       |
+|    f2_2_fu_244_p2                    |     |        | f2_2        | add    | fabric   | 0       |
+|    f1_2_fu_254_p2                    |     |        | f1_2        | add    | fabric   | 0       |
+|    add_ln7_fu_211_p2                 |     |        | add_ln7     | add    | fabric   | 0       |
+|  + mergesort_Pipeline_copy           | 0   |        |             |        |          |         |
+|    icmp_ln33_fu_73_p2                |     |        | icmp_ln33   | seteq  | auto     | 0       |
+|    add_ln33_fu_79_p2                 |     |        | add_ln33    | add    | fabric   | 0       |
++--------------------------------------+-----+--------+-------------+--------+----------+---------+
+
+
+================================================================
+== Storage Report
+================================================================
++-------------+--------------+------+------+------+--------+----------+------+---------+------------------+
+| Name        | Usage        | Type | BRAM | URAM | Pragma | Variable | Impl | Latency | Bitwidth, Depth, |
+|             |              |      |      |      |        |          |      |         | Banks            |
++-------------+--------------+------+------+------+--------+----------+------+---------+------------------+
+| + mergesort |              |      | 2    | 0    |        |          |      |         |                  |
+|   tmp_U     | ram_1p array |      | 2    |      |        | tmp      | auto | 1       | 32, 1024, 1      |
++-------------+--------------+------+------+------+--------+----------+------+---------+------------------+
+
+
+================================================================
+== Pragma Report
+================================================================
+* Valid Pragma Syntax
++----------+---------+-------------------------------------------+
+| Type     | Options | Location                                  |
++----------+---------+-------------------------------------------+
+| pipeline | II=1    | mergesort_2_pipelined.cpp:8 in merge      |
+| pipeline | II=1    | mergesort_2_pipelined.cpp:34 in mergesort |
+| pipeline | II=1    | mergesort_2_pipelined.cpp:39 in mergesort |
++----------+---------+-------------------------------------------+
+
+

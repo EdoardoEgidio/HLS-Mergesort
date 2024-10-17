@@ -19,7 +19,7 @@ void merge(data_t in[SIZE], data_t out[SIZE], len_t start, len_t mid, len_t end)
     }
 }
 
-void mergesort(data_t input[SIZE], data_t output[SIZE]){
+void mergesort(data_t in[SIZE], data_t out[SIZE]){
     data_t tmp[SIZE] = {0};
     window_growth: 
     for(len_t window = 1; window < SIZE; window *= 2){
